@@ -1,14 +1,8 @@
 <?php
-require_once "controllers/ProfilEtudController.php";
-    session_start();
-    
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        
-        $controller = new ProfilEtudController();
-     
-        $controller->afficherProfil(); 
-    }
 
+class LoginAdminView{
+
+public function entete(){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +10,15 @@ require_once "controllers/ProfilEtudController.php";
     <title>Connexion</title>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
 </head>
+
+<?php }
+public function connexion(){
+?> 
 <body>
 
         <div id="container">
             
-            <form action="/ProjetWeb/LoginController" method="POST">
+            <form action="/ProjetWeb/AdminLogin" method="POST">
                 <h1>Connexion</h1>
                 
                 <label><b>Nom d'utilisateur</b></label>
@@ -33,6 +31,10 @@ require_once "controllers/ProfilEtudController.php";
                 
             </form>
         </div>
-   
 </body>
 </html>
+
+
+<?php 
+} }
+?>

@@ -1,6 +1,6 @@
 <?php
 
-class LoginModel {
+class LoginAdminModel{
 public function getlogin()
 {
 
@@ -11,34 +11,22 @@ public function getlogin()
     if($_SERVER["REQUEST_METHOD"] == "POST"){
  
         // Check if username is empty
-        if(empty(trim($_POST["username"]))){
+        if(!empty(trim($_POST[""]))){
             $username_err = "Please enter username.";
         } else{
             $username = trim($_POST["username"]);
         }
-    
         if(empty(trim($_POST["password"]))){
             $password_err = "Please enter your password.";
         } else{
             $password = trim($_POST["password"]);
         }
         if(empty($username_err) && empty($password_err)){
-            // Check the username first letter to know to which type this user belongs
-           if($username[0]=="s"){
-            //Student 
-            $sql = "SELECT ID_student, Username, Passwd FROM etudiant WHERE Username = :username";
-            $type_id="ID_student";
-           }elseif($username[0]=="i"){ //Instructor
-            $sql = "SELECT ID_student, Username, Passwd FROM enseignant WHERE Username = :username";
-            $type_id="ID_ens";
-           }else{//Tuteur
-            $sql = "SELECT ID_student, Username, Passwd FROM parent WHERE Username = :username";
-            $type_id="ID_parent";
-           }
+           
+        $sql = "SELECT ID_admin, Username, Passwd FROM admin WHERE Username = :username";
            if($stmt = $pdo->prepare($sql)){
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             
-    
             $param_username = trim($_POST["username"]);
             
           
@@ -46,7 +34,7 @@ public function getlogin()
     
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
-                        $id = $row[$type_id];
+                        $id = $row["ID_admin"];
                         $username = $row["Username"];
                         $hashed_password = $row["Passwd"];
                         if($password == $hashed_password){
@@ -56,9 +44,8 @@ public function getlogin()
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-                            $_SESSION["type"] = $type_id;                
-                
-                             return $type_id;
+                            $_SESSION["type"] = "admin";                
+                              return "admin";
                           
                         } else{
                             

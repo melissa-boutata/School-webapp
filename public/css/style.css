@@ -51,20 +51,17 @@ input[type="submit"]:hover {
 
 /* Objectif N°5: Style du diaporama */
 img {
-  width: 100%;
+  width: 70%;
   height: 350px;
 }
 .slide {
   float: top;
-  margin-right: 5%;
-  margin-left: 5%;
-  background-color: #000000;
+  text-align: center;
 }
 
 .slides {
   height: calc(350px * 4);
-  animation: diaporama 8s ease-in-out infinite;
-  background-color: black;
+  animation: diaporama 3s ease-in-out infinite;
 }
 .slides:hover {
   animation-play-state: paused;
