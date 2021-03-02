@@ -14,7 +14,7 @@ public function login()
 
     $reslt = $this->model->getlogin();  
  
-    if($reslt == "admin")
+    if($reslt == "Admin")
     {
         header("Location: /ProjetWeb/AdminPanel");
     }
@@ -27,7 +27,7 @@ public function afficher()
     session_start();
     $valid_session = isset($_SESSION['id']) ? $_SESSION['id'] === session_id() : FALSE;
     
-    if ($valid_session &&  $_SESSION["type"] != "admin"){
+    if ($valid_session &&  $_SESSION["type"] != "Admin"){
             //We call a new URL //localhost/ProjetWeb/adminpannel
             header("Location: /ProjetWeb/Admin");
     }

@@ -1,6 +1,6 @@
 <?php
 
-class EspaceEtudView{
+class EspaceParentView{
   
   public function entete(){
     ?>

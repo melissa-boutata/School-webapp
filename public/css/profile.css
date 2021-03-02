@@ -1,3 +1,8 @@
+body {
+  background: #566787;
+  font-family: "Varela Round", sans-serif;
+  font-size: 13px;
+}
 .emp-profile {
   padding: 3%;
   margin-top: 3%;

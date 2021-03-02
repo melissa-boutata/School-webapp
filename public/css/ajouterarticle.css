@@ -9,11 +9,15 @@ body {
 }
 input[type="text"],
 input[type="time"],
+input[type="date"],
+input[type="email"],
+input[type="number"],
+#password,
+#phone,
 #texte,
 #nbheure,
 #contenu,
 select,
-input[type="date"],
 #type {
   width: 100%;
   padding: 12px 20px;

@@ -1,38 +1,34 @@
 <?php
 
-class ProfilEtudModel {
+class ProfilEnfantModel {
 
  public function __construct()
  {}
 
-public function getInfos()
+public function getInfos($id)
 { 
-        try{
-            $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
-            // Set the PDO error mode to exception
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $exc){
-            die("ERROR: Could not connect. " . $exc->getMessage());
-        }
+       
+    require_once "config/config.php";
     
     session_start();
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        
+      
         // Récuperer les infos de la BDD 
-        if ($_SESSION["type"] = "Etudiant"){
-            $sql = "SELECT ID_student,FirstName,LastName,Email,PhoneNum1,PhoneNum2,PhoneNum3,BirthDate,BirthPlace,Class,Address FROM etudiant WHERE ID_user = :id_user";
-       
+        if ($_SESSION["type"] == "Parent"){
+            $sql = "SELECT ID_student,FirstName,LastName,Email,PhoneNum1,PhoneNum2,PhoneNum3,BirthDate,BirthPlace,Class,Address FROM etudiant WHERE ID_student = :id_user";
+
             if($stmt = $pdo->prepare($sql)){
                
                 $stmt->bindParam(":id_user", $param_id, PDO::PARAM_STR);
-            
-                $param_id = $_SESSION["id"];
-               
+                $param_id = $id;
+ 
                 if($stmt->execute()){
                     $data[]=null;
+                    
                     if($stmt->rowCount() == 1){
                         if($row = $stmt->fetch()){
-                            $data[0] = $row["ID_student"];
+
+                            $data[0]=$row["ID_student"];
                             $data[1]=$_SESSION["username"];
                             $data[2]=$row["FirstName"];
                             $data[3]=$row["LastName"];
@@ -44,7 +40,7 @@ public function getInfos()
                             $data[9]=$row["BirthPlace"];
                             $data[10]=$row["Address"];
                             $data[11]=$row["Class"];
-
+                            
                             return $data;
                   }
                 }

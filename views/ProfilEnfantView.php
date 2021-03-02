@@ -1,11 +1,11 @@
 <?php
-Class ProfilEtud {
+Class ProfilEnfantView {
 
     public function entete(){
 ?>
 <!doctype html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,24 +16,6 @@ Class ProfilEtud {
         <link href="../public/css/profile.css" rel="stylesheet">
         <link hre="../public/css/edt.css" rel="stylesheet">
     </head>
-
-    </head>
-<?php }
-    public function navbar(){
-          ?>
-  <!-- Navigation -->
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <a class="navbar-link" href="/ProjetWeb/Logout">Log out</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
     <?php
     }
     public function afficher($data,$edt,$notes,$activites) {
@@ -50,10 +32,7 @@ Class ProfilEtud {
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                         
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -77,9 +56,6 @@ Class ProfilEtud {
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
                     </div>
                 </div>
                 <div class="row">

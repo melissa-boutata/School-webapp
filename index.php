@@ -1,74 +1,10 @@
 <?php
-/*
-RewriteEngine On
-
-# ignore les fichiers, dossier existant
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# chaque requete get sera exécutée avec l'action action=var
-RewriteRule ^(.*)$ index.php?action=$1 [L,QSA]
-
-include_once "controllers/LoginController.php";
-include_once "controllers/EspaceEtudController.php";
-include_once "controllers/PresentationController.php";
-include_once "controllers/AccueilController.php";
-
-
-            $action = $_GET['action'];
-
-            /* Decoupe l'url en liste 
-            $action_list = explode('/', $action);
-
-            if(isset($action) && isset($action_list[0])) {
-            /* On trouve le nom du controleur 
-            $controller_name = $action_list[0];
-            
-
-            if($controller_name == "Accueil") 
-                {
-                    $controller = new AccueilController();
-                    $controller->afficherAccueil();
-                }
-            elseif($controller_name == "LoginController") 
-                {
-                    $controller = new LoginController();
-                    $controller->invoke();
-                }
-            elseif($controller_name == "EspaceEtudController") 
-            {
-                $controller = new EspaceEtudController();
-                $controller->afficherEspace();
-            }
-            elseif($controller_name == "AccueilController") 
-            {
-                include "views/AccueilView.php";
-            }
-            elseif($controller_name == "PresentationController") 
-            {
-                $controller = new PresentationController();
-                $controller->afficherDescription();
-            }
-            else
-                {
-                    header('Status: 404 Not Found');
-                    echo '<html><body><h1>Page Not Found</h1></body></html>';
-                }
-  }
-            
-
-
-
-        $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'],'/')) : '/';   
-        var_dump($url);
-?>
-
-*/
 
     $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'],'/')) : '/';
 
         include_once "controllers/LoginController.php";
         include_once "controllers/EspaceEtudController.php";
+        include_once "controllers/EspaceParentController.php";
         include_once "controllers/PresentationController.php";
         include_once "controllers/AccueilController.php";
         include_once "controllers/PublicArticlesController.php";
@@ -84,6 +20,12 @@ include_once "controllers/AccueilController.php";
         include_once "controllers/GestionRestaurationController.php";
         include_once "controllers/GestionEnsController.php";
         include_once "controllers/AjouterEdtController.php";
+        include_once "controllers/GestionUtilisateursController.php";
+        include_once "controllers/ProfilParentController.php";
+        include_once "controllers/ProfilEnfantController.php";
+
+
+
 
 
     if ($url == '/')
@@ -119,7 +61,21 @@ include_once "controllers/AccueilController.php";
         if ($requestedController=="Login")
         {
                     $controller = new LoginController();
-                    $controller->invoke(); }
+                    if($_SERVER["REQUEST_METHOD"] == "POST")
+                        {
+                            $controller->invoke(); 
+
+                        }else{
+                        
+                            $controller->afficher();
+                            
+                        }
+                    }
+         elseif ($requestedController=="Logout"){
+                session_start();
+                session_destroy();
+                header("Location:/ProjetWeb/");        
+            }
         elseif ($requestedController=="Admin")
         {
                     $controller = new LoginAdminController();
@@ -256,13 +212,55 @@ include_once "controllers/AccueilController.php";
                           $controller->ajouterEdt();
                       }
                     }
-       
-        elseif($requestedController == "EspaceEtudiant")  //Not working
+            elseif ($requestedController=="GestionUtilisateurs")
+                    {
+                    $controller = new GestionUtilisateursController();
+                    $controller->gererUtilisateurs();
+                    }
+            elseif ($requestedController=="SupprimerUtilisateur")
+                    {
+                    $controller = new GestionUtilisateursController();
+                    $controller->supprimerUtilisateur($requestedAction);
+                    }
+            elseif ($requestedController=="AjouterUtilisateur")
+                    {
+                    $controller = new GestionUtilisateursController();
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
+                            $controller->ajouterToBDD();}
+                            else{
+                             $controller->ajouterUtilisateur($requestedAction);
+                            }
+                    }
+            elseif ($requestedController=="ModifierUtilisateur")
+                    {
+                    $controller = new GestionUtilisateursController();
+                        if($_SERVER["REQUEST_METHOD"] == "POST"){
+                            $controller->modifierInBDD();
+                        }else { 
+                        $controller->modifierUtilisateur($requestedAction,$requestedParams[0]);
+                    }
+                    }
+
+        elseif($requestedController == "EspaceEtudiant") 
                 {
                     $controller = new EspaceEtudController();
                     $controller->afficherEspace();
                 }
-        
+        elseif($requestedController == "EspaceParent") 
+                {
+                    $controller = new EspaceParentController();
+                    $controller->afficherEspace();
+                }
+        elseif($requestedController == "ProfilParent") 
+                {
+                    $controller = new ProfilParentController();
+                    $controller->afficherProfilParent();
+                }
+        elseif($requestedController == "ProfilEnfant") 
+                {
+                    $controller = new ProfilEnfantController();
+                    $controller->afficherProfil($requestedAction);
+                }
         elseif($requestedController== "Presentation") 
                 {
                     $controller = new PresentationController();

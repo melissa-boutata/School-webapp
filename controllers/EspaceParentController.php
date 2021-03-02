@@ -1,21 +1,22 @@
 <?php
-include_once "views/EspaceEtudView.php";
-include_once "models/EspaceEtudModel.php";
+include_once "views/EspaceParentView.php";
+include_once "models/EspaceParentModel.php";
 
-class EspaceEtudController{
+class EspaceParentController{
 public $EspaceView;
 Public $EspaceModel;
 public function __construct()
  {
                
 }
+
         
 public function afficherEspace(){
 
-    $EspaceModel=new EspaceEtudModel();
+    $EspaceModel=new EspaceParentModel();
     $cadres=$EspaceModel->getCadres();
    
-    $EspaceView=new EspaceEtudView();
+    $EspaceView=new EspaceParentView();
     $EspaceView->entete();
     $EspaceView->navbar();
     $EspaceView->afficher($cadres);

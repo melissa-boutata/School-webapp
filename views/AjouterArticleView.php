@@ -73,6 +73,35 @@ class AjouterArticleView{
 			<option value="Eleve">Elèves</option>
 			<option value="Enseignant">Enseignant</option>
 		</select>    
+
+<div class="row">
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="Tous" id="Tous">
+  <label class="form-check-label" for="flexRadioDefault1"> Tous</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="Primaire" id="Primaire">
+  <label class="form-check-label" for="flexRadioDefault1">Primaire</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="Moyen" id="Moyen">
+  <label class="form-check-label" for="flexRadioDefault1">Moyen</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="Secondaire" id="Secondaire">
+  <label class="form-check-label" for="flexRadioDefault1">Secondaire</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="Parents" id="Parents">
+  <label class="form-check-label" for="flexRadioDefault1">Parents</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="Enseignant" id="Enseignant">
+  <label class="form-check-label" for="flexRadioDefault1">Enseignants</label>
+</div>
+</div>
+
 	</div>
 	</div>
 		<input type="submit" value="Ajouter article">

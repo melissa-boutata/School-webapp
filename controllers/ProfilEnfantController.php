@@ -1,18 +1,20 @@
 <?php
-include_once "views/ProfilEtud.php";
-include_once "models/ProfilEtudModel.php";
-class ProfilEtudController{
+include_once "views/ProfilEnfantView.php";
+include_once "models/ProfilEnfantModel.php";
+
+class ProfilEnfantController{
 public $ProfilView;
 public $ProfilModel;
 
 public function __construct()
  {}
 
-public function afficherProfil(){
+public function afficherProfil($id){
 
-    $ProfilModel= new ProfilEtudModel();
+    $ProfilModel= new ProfilEnfantModel();
 
-    $data=$ProfilModel->getInfos();
+    $data=$ProfilModel->getInfos($id);
+    $data[0];
     $edt= array(); 
     $dimanche=$ProfilModel->getEdtByDay($data[11],"Dimanche");
     array_push($edt,$dimanche);
@@ -28,13 +30,10 @@ public function afficherProfil(){
     $notes=$ProfilModel->getNotes($data[0]);
     $activites=$ProfilModel->getActivites($data[0]);
  
-    $ProfilView=new ProfilEtud();
+    $ProfilView=new ProfilEnfantView();
     $ProfilView->entete();
-    $ProfilView->navbar();
     $ProfilView->afficher($data,$edt,$notes,$activites);
-
 }
-
 }
 ?>
 

@@ -1,14 +1,8 @@
 <?php
-require_once "controllers/ProfilEtudController.php";
-    session_start();
-    
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        
-        $controller = new ProfilEtudController();
-     
-        $controller->afficherProfil(); 
-    }
 
+class LoginUser{
+
+public function entete(){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +10,15 @@ require_once "controllers/ProfilEtudController.php";
     <title>Connexion</title>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
 </head>
+
+<?php }
+public function connexion(){
+?> 
 <body>
 
         <div id="container">
             
-            <form action="/ProjetWeb/LoginController" method="POST">
+            <form action="/ProjetWeb/Login" method="POST">
                 <h1>Connexion</h1>
                 
                 <label><b>Nom d'utilisateur</b></label>
@@ -29,10 +27,26 @@ require_once "controllers/ProfilEtudController.php";
                 <label><b>Mot de passe</b></label>
                 <input id="password" type="password" placeholder="Entrer le mot de passe" name="password" required>
 
+                <label>
+                    <input type="radio" name="radio" value="Etudiant">Etudiant
+                    <span class="select"></span>
+                </label>
+                <label>
+                    <input type="radio" name="radio" value="Enseignant">Enseignant
+                    <span class="select"></span>
+                </label>
+                <label>
+                    <input type="radio" name="radio" value="Parent">Parent
+                    <span class="select"></span>
+                </label>
                 <input type="submit" id='submit' value='LOGIN'>
                 
             </form>
         </div>
-   
 </body>
 </html>
+
+
+<?php 
+} }
+?>

@@ -3,7 +3,6 @@
 class LoginModel {
 public function getlogin()
 {
-
     require_once "config/config.php";
     
     $username = $password = "";
@@ -24,31 +23,25 @@ public function getlogin()
         }
         if(empty($username_err) && empty($password_err)){
             // Check the username first letter to know to which type this user belongs
-           if($username[0]=="s"){
-            //Student 
-            $sql = "SELECT ID_student, Username, Passwd FROM etudiant WHERE Username = :username";
-            $type_id="ID_student";
-           }elseif($username[0]=="i"){ //Instructor
-            $sql = "SELECT ID_student, Username, Passwd FROM enseignant WHERE Username = :username";
-            $type_id="ID_ens";
-           }else{//Tuteur
-            $sql = "SELECT ID_student, Username, Passwd FROM parent WHERE Username = :username";
-            $type_id="ID_parent";
-           }
+
+            $type=$_POST['radio'];
+            $sql = "SELECT ID_user,Username,Password FROM utilisateur WHERE Username =:username && Type=:type";
+        
            if($stmt = $pdo->prepare($sql)){
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+            $stmt->bindParam(":type", $param_type, PDO::PARAM_STR);
             
     
             $param_username = trim($_POST["username"]);
-            
+            $param_type=$type;
           
             if($stmt->execute()){
     
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
-                        $id = $row[$type_id];
+                        $id = $row["ID_user"];
                         $username = $row["Username"];
-                        $hashed_password = $row["Passwd"];
+                        $hashed_password = $row["Password"];
                         if($password == $hashed_password){
                           
                             session_start();
@@ -56,9 +49,9 @@ public function getlogin()
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-                            $_SESSION["type"] = $type_id;                
+                            $_SESSION["type"] = $type;                
                 
-                             return $type_id;
+                             return $type;
                           
                         } else{
                             
