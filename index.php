@@ -23,7 +23,7 @@
         include_once "controllers/GestionUtilisateursController.php";
         include_once "controllers/ProfilParentController.php";
         include_once "controllers/ProfilEnfantController.php";
-
+        include_once "controllers/ContactController.php";
 
 
 
@@ -280,20 +280,45 @@
                     $controller = new PrimaireController();
                     $controller->afficher();
                 }
+        elseif($requestedController== "ListeEnsPrimaire") 
+                {
+                    $controller = new PrimaireController();
+                    $controller->ensPrimaire();
+                }
         elseif($requestedController== "Moyen") 
                 {
                     $controller = new MoyenController();
                     $controller->afficher();
+                }
+        elseif($requestedController== "ListeEnsMoyen") 
+                {
+                    $controller = new MoyenController();
+                    $controller->ensMoyen();
+                }
+        elseif($requestedController== "EdtMoyen") 
+                {
+                    $controller = new MoyenController();
+                    $controller->edtMoyen();
                 }
         elseif($requestedController== "Secondaire") 
                 {
                     $controller = new SecondaireController();
                     $controller->afficher();
                 }
+        elseif($requestedController== "ListeEnsSecondaire") 
+                {
+                    $controller = new SeconaireController();
+                    $controller->ensSecondaire();
+                }
          elseif($requestedController== "Restauration") 
                 {
                     $controller = new RestaurationController();
-                    $controller->afficherMenu($requestedParams[0]);
+                    $controller->afficherMenu($requestedAction);
+                }
+        elseif($requestedController== "Contact") 
+                {
+                    $controller = new ContactController();
+                    $controller->afficherContact();
                 }
         elseif($requestedController== "ListeEns") 
                 {

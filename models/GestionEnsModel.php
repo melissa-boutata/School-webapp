@@ -120,11 +120,11 @@ public function modifierInBDD(){
             $updated = $statement->execute();
              
             if($updated){
-             echo "<script type= 'text/javascript'>alert('Article modifié');</script>";
+             echo "<script type= 'text/javascript'>alert('Dates et/ou heures de réception modifiées');</script>";
              
             }
             else{
-            echo "<script type= 'text/javascript'>alert('L'article  n'a pas été modifié);</script>";
+            echo "<script type= 'text/javascript'>alert('Dates et/ou heures de réception non modifiées');</script>";
             }
             return $id;
             

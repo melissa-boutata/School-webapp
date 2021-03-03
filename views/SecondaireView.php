@@ -1,6 +1,6 @@
 <?php
 
-class SecodaireView{
+class SecondaireView{
   
   public function entete(){
     ?>

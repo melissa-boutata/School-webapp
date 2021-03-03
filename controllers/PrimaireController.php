@@ -1,6 +1,7 @@
 <?php
 include_once "views/PrimaireView.php";
 include_once "models/PrimaireModel.php";
+include_once  "views/EnsPrimaireView.php";
 class PrimaireController{
 public $PrimaireView;
 public $PrimaireModel;
@@ -19,5 +20,17 @@ public function afficher(){
     $PrimaireView->afficher($articles);
     $PrimaireView->piedsdepage();
 }
+public function ensPrimaire(){
+    $PrimaireModel= new PrimaireModel();
+    $ens = $PrimaireModel->getEnsPrimaire();
+
+     $EnsPrimaireView=new EnsPrimaireView();
+     $EnsPrimaireView->entete();
+     $EnsPrimaireView->afficherEns($ens);
+  
+}
+
+
+
 }
 ?>

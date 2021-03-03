@@ -16,7 +16,12 @@ public function getAllArticles()
                     'image'=>'',
                     'date'=>'',
                     'texte'=>'',
-                    'users'
+                    'tous'=>'',
+                    'ens'=>'',
+                    'parents'=>'',
+                    'primaire'=>'',
+                    'moyen'=>'',
+                    'secondaire'=>'',
                 ];
                 $data=array();
                 if($stmt->execute()){
@@ -27,7 +32,12 @@ public function getAllArticles()
                         $article["image"]=$row["Img"];
                         $article["texte"]=$row["Description"];
                         $article["date"]=$row["Date"];
-                        $article["users"]=$row["ConcernedUser"];
+                        $article["tous"]=$row["Tous"];
+                        $article["ens"]=$row["Enseignants"];
+                        $article["parents"]=$row["Parents"];
+                        $article["primaire"]=$row["Primaire"];
+                        $article["moyen"]=$row["Moyen"];
+                        $article["secondaire"]=$row["Secondaire"];
                         array_push($data,$article);
                     }
                     return $data;
@@ -44,7 +54,7 @@ public function addArticle(){
 
         require_once "config/config.php";
     
-            $sql = "INSERT INTO `article` (`Title`, `Img`,`Description`,`Date`,`ConcernedUser`) VALUES (:title, :image,:texte,:date,:users)";
+            $sql = "INSERT INTO `article` (`Title`, `Img`,`Description`,`Date`,`Tous`,`Parents`,`Enseignants`,`Primaire`,`Moyen`,`Secondaire`) VALUES (:title, :image,:texte,:date,:tous,:parents,:enseignants,:primaire,:moyen,:secondaire)";
             
             $statement = $pdo->prepare($sql);
     
@@ -52,14 +62,48 @@ public function addArticle(){
             $image= $_POST["image"];
             $texte= $_POST["texte"];
             $date=$_POST["date"];
-            $users= $_POST["users"];
-    
+         
+            if (!empty($_POST['Tous'])){
+                $tous='Oui';
+            }else{
+                $tous='Non';
+            }
+            if (!empty($_POST['Parents'])){
+                $parents='Oui';
+            }else{
+                $parents='Non';
+            }
+            if (!empty($_POST['Enseignants'])){
+                $enseignants='Oui';
+            }else{
+                $enseignants='Non';
+            }
+            if (!empty($_POST['Primaire'])){
+                $primaire='Oui';
+            }else{
+                $primaire='Non';
+            }
+            if (!empty($_POST['Moyen'])){
+                $moyen='Oui';
+            }else{
+                $moyen='Non';
+            }
+            if (!empty($_POST['Secondaire'])){
+                $secondaire='Oui';
+            }else{
+                $secondaire='Non';
+            }
+
             $statement->bindValue(":title", $title);
             $statement->bindValue(":image", $image);
             $statement->bindValue(":texte", $texte);
             $statement->bindValue(":date", $date);
-            $statement->bindValue(":users", $users);
-             
+            $statement->bindValue(":tous", $tous);
+            $statement->bindValue(":parents", $parents);
+            $statement->bindValue(":enseignants", $enseignants);
+            $statement->bindValue(":primaire", $primaire);
+            $statement->bindValue(":moyen", $moyen);
+            $statement->bindValue(":secondaire", $secondaire);
             $inserted = $statement->execute();
              
             if($inserted){
@@ -111,7 +155,12 @@ public function getArticle($id)
                     'image'=>'',
                     'date'=>'',
                     'texte'=>'',
-                    'users'=>'',
+                    'tous'=>'',
+                    'ens'=>'',
+                    'parents'=>'',
+                    'primaire'=>'',
+                    'moyen'=>'',
+                    'secondaire'=>'',
                 ];
                 if($stmt->execute()){
                    $row = $stmt->fetch();
@@ -120,7 +169,12 @@ public function getArticle($id)
                         $article["image"]=$row["Img"];
                         $article["texte"]=$row["Description"];
                         $article["date"]=$row["Date"];
-                        $article["users"]=$row["ConcernedUser"];
+                        $article["tous"]=$row["Tous"];
+                        $article["ens"]=$row["Enseignants"];
+                        $article["parents"]=$row["Parents"];
+                        $article["primaire"]=$row["Primaire"];
+                        $article["moyen"]=$row["Moyen"];
+                        $article["secondaire"]=$row["Secondaire"];
 
                     return $article;
                 }
@@ -135,7 +189,7 @@ public function modifierInBDD(){
 
         require_once "config/config.php";
     
-            $sql = "UPDATE article SET Title=:title, Img=:image,Description=:texte,Date=:date,ConcernedUser=:users WHERE ID_article=:id";
+            $sql = "UPDATE article SET Title=:title, Img=:image,Description=:texte,Date=:date,Tous=:tous,Parents=:parents,Enseignants=:enseignants,Primaire=:primaire,Moyen=:moyen,Secondaire=:secondaire WHERE ID_article=:id";
             $statement = $pdo->prepare($sql);
     
             $id= $_POST["id"];
@@ -143,14 +197,48 @@ public function modifierInBDD(){
             $image= $_POST["image"];
             $texte= $_POST["texte"];
             $date=$_POST["date"];
-            $users= $_POST["users"];
+            if (!empty($_POST['Tous'])){
+                $tous='Oui';
+            }else{
+                $tous='Non';
+            }
+            if (!empty($_POST['Parents'])){
+                $parents='Oui';
+            }else{
+                $parents='Non';
+            }
+            if (!empty($_POST['Enseignants'])){
+                $enseignants='Oui';
+            }else{
+                $enseignants='Non';
+            }
+            if (!empty($_POST['Primaire'])){
+                $primaire='Oui';
+            }else{
+                $primaire='Non';
+            }
+            if (!empty($_POST['Moyen'])){
+                $moyen='Oui';
+            }else{
+                $moyen='Non';
+            }
+            if (!empty($_POST['Secondaire'])){
+                $secondaire='Oui';
+            }else{
+                $secondaire='Non';
+            }
     
             $statement->bindValue(":id", $id);
             $statement->bindValue(":title", $title);
             $statement->bindValue(":image", $image);
             $statement->bindValue(":texte", $texte);
             $statement->bindValue(":date", $date);
-            $statement->bindValue(":users", $users);
+            $statement->bindValue(":tous", $tous);
+            $statement->bindValue(":parents", $parents);
+            $statement->bindValue(":enseignants", $enseignants);
+            $statement->bindValue(":primaire", $primaire);
+            $statement->bindValue(":moyen", $moyen);
+            $statement->bindValue(":secondaire", $secondaire);
              
             $updated = $statement->execute();
              

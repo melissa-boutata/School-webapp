@@ -353,11 +353,11 @@ public function modifierInBDD(){
                 } */
             $user_updated = $statement->execute();
             if ($user_updated){
-             echo "<script type= 'text/javascript'>alert('Article modifié');</script>";
+             echo "<script type= 'text/javascript'>alert('Utilisateur modifié');</script>";
              
             }
             else{
-            echo "<script type= 'text/javascript'>alert('L'article  n'a pas été modifié);</script>";
+            echo "<script type= 'text/javascript'>alert('L'utilisateur  n'a pas été modifié);</script>";
             }
         }
             return $user_updated;

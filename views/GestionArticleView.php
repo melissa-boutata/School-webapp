@@ -100,9 +100,8 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-                <?php foreach($articles as $article) { ?>
+                <?php foreach($articles as $article) {?>
 					<tr>
-						
 						<td><?php echo $article["titre"]?></td>
 						<td><?php echo $article["texte"]?></td>
                         
@@ -110,7 +109,15 @@ $(document).ready(function(){
                         <td><img> 
                         <img  src="<?php echo $article["image"]?>" alt="" style="height: 10rem;">
                         </td>
-						<td><?php echo $article["users"]?></td>
+						<td><?php 
+						if ($article["tous"]=="Oui"){echo "|Tous|"; echo "<br>";}
+						if ($article["parents"]=="Oui"){echo "|Parents|";echo "<br>";}
+						if ($article["ens"]=="Oui"){echo "|Enseignants|";echo "<br>";}
+						if ($article["primaire"]=="Oui"){echo "|Primaire|";echo "<br>";}
+						if ($article["moyen"]=="Oui"){echo "|Moyen|";echo "<br>";}
+						if ($article["secondaire"]=="Oui"){echo "|Secondaire|";echo "<br>";}
+						
+						?></td>
 						<td>
 							<a href="/ProjetWeb/ModifierArticle/<?php echo $article["id"]?>" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
 							<a href="#deleteArticleModal<?php echo $article["id"] ?>" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Supprimer">&#xE872;</i></a>

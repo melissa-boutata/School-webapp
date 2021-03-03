@@ -106,8 +106,6 @@ class RestaurationView{
             <?php } } ?>
         </tbody>
         </table>
-
-      
   </div>
     
 <?php 

@@ -1,6 +1,8 @@
 <?php
 include_once "views/SecondaireView.php";
 include_once "models/SecondaireModel.php";
+include_once "views/EnsSecondaireView.php";
+
 class SecondaireController{
 public $SecondaireView;
 public $SecondaireModel;
@@ -19,5 +21,16 @@ public function afficher(){
     $SecondaireView->afficher($articles);
     $SecondaireView->piedsdepage();
 }
+public function ensSecondaire(){
+    $SecondaireModel= new SecondaireModel();
+    $ens = $SecondaireModel->getEnsScondaire();
+
+     $EnsSecondaireView=new EnsSecondaireView();
+     $EnsSecondaireView->entete();
+     $EnsSecondaireView->afficherEns($ens);
+  
+}
+
+
 }
 ?>

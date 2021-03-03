@@ -60,17 +60,47 @@ public function afficherForm($article){ ?>
 
 <div class="col-lg-6 col-md-6 mb-4"> 
 <label for="">Corps de l'article</label>
-		<textarea type="text" id="texte" name="texte" placeholder="Corps de l'article" rows="6" value=""required> <?php echo $article["texte"] ?> </textarea>
-		<label for="users">Destiné à:</label>
-		<select  name="users" id="users" >
-			<option <?php if($article["users"] == "Tous") echo 'selected';?> value="Tous">Tous</option>
-			<option <?php if($article["users"] == "Primaire") echo 'selected';?> value="Primaire">Primaire</option>
-			<option <?php if($article["users"] == "Moyen") echo 'selected';?> value="Moyen">Moyen</option>
-			<option <?php if($article["users"] == "Secondaire") echo 'selected';?> value="Secondaire">Secondaire</option>
-			<option <?php if($article["users"] == "Parent") echo 'selected';?> value="Parent">Parent</option>
-			<option <?php if($article["users"] == "Eleve") echo 'selected';?> value="Eleve">Elèves</option>
-			<option <?php if($article["users"] == "Enseignant") echo 'selected';?> value="Enseignant">Enseignant</option>
-		</select>    
+		<textarea type="text" id="texte" name="texte" placeholder="Corps de l'article" rows="6" value=""required> <?php echo $article["texte"] ?> </textarea>  
+    <label for="users">Destiné à:</label>
+	  <div class="row"> 
+        <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Tous" id="Tous" value="Tous" <?php if($article["tous"] == "Oui") echo 'checked';?> >
+      <label class="form-check-label" for="exampleRadios1">
+      Tous
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Parents" id="Parents" value="Parents" <?php if($article["parents"] == "Oui") echo 'checked';?>>
+      <label class="form-check-label" for="exampleRadios2">
+      Parents
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Enseignants" id="Enseignants" value="Enseignants" <?php if($article["ens"] == "Oui") echo 'checked';?>>
+      <label class="form-check-label" for="exampleRadios3">
+      Enseignants
+      </label>
+    </div>
+    </div>
+    <div class="row">        
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Primaire" id="Primaire" value="Primaire" <?php if($article["primaire"] == "Oui") echo 'checked';?>>
+      <label class="form-check-label" for="exampleRadios4">
+      Primaire
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Moyen" id="Moyen" value="Moyen" <?php if($article["moyen"] == "Oui") echo 'checked';?>>
+      <label class="form-check-label" for="exampleRadios4">
+      Moyen
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Secondaire" id="Secondaire" value="Secondaire" <?php if($article["secondaire"] == "Oui") echo 'checked';?>>
+      <label class="form-check-label" for="exampleRadios4">
+      Secondaire
+      </label>
+    </div>
 </div>
 </div>
 		<input type="submit" value="Modifier article">

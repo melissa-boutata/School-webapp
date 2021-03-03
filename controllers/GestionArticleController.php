@@ -21,7 +21,7 @@ public function gererArticles(){
     }else {
          $this->GestionArticleModel = new GestionArticleModel();
          $articles=$this->GestionArticleModel->getAllArticles();
-
+       
          $GestionArticleView=new GestionArticleView();
          $GestionArticleView->entete();
          $GestionArticleView->navbar();

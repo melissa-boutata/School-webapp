@@ -62,46 +62,50 @@ class AjouterArticleView{
     <div class="col-lg-6 col-md-6 mb-4">  
 		<label for="">Corps de l'article</label>
 		<textarea type="text" id="texte" name="texte"  rows="6" required> </textarea>
-
+      <br>
+      <br>
+   
 		<label for="users">Destiné à:</label>
-		<select name="users" id="users">
-			<option value="Tous">Tous</option>
-			<option value="Primaire">Primaire</option>
-			<option value="Moyen">Moyen</option>
-			<option value="Secondaire">Secondaire</option>
-			<option value="Parent">Parent</option>
-			<option value="Eleve">Elèves</option>
-			<option value="Enseignant">Enseignant</option>
-		</select>    
-
-<div class="row">
-
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="Tous" id="Tous">
-  <label class="form-check-label" for="flexRadioDefault1"> Tous</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="Primaire" id="Primaire">
-  <label class="form-check-label" for="flexRadioDefault1">Primaire</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="Moyen" id="Moyen">
-  <label class="form-check-label" for="flexRadioDefault1">Moyen</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="Secondaire" id="Secondaire">
-  <label class="form-check-label" for="flexRadioDefault1">Secondaire</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="Parents" id="Parents">
-  <label class="form-check-label" for="flexRadioDefault1">Parents</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="Enseignant" id="Enseignant">
-  <label class="form-check-label" for="flexRadioDefault1">Enseignants</label>
-</div>
-</div>
-
+	  <div class="row"> 
+        <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Tous" id="Tous" value="Tous" >
+      <label class="form-check-label" for="exampleRadios1">
+      Tous
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Parents" id="Parents" value="Parents">
+      <label class="form-check-label" for="exampleRadios2">
+      Parents
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Enseignants" id="Enseignants" value="Enseignants">
+      <label class="form-check-label" for="exampleRadios3">
+      Enseignants
+      </label>
+    </div>
+    </div>
+    <div class="row">        
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Primaire" id="Primaire" value="Primaire">
+      <label class="form-check-label" for="exampleRadios4">
+      Primaire
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Moyen" id="Moyen" value="Moyen">
+      <label class="form-check-label" for="exampleRadios4">
+      Moyen
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="Secondaire" id="Secondaire" value="Secondaire">
+      <label class="form-check-label" for="exampleRadios4">
+      Secondaire
+      </label>
+    </div>
+    </div>
 	</div>
 	</div>
 		<input type="submit" value="Ajouter article">

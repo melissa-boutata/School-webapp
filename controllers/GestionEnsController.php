@@ -3,6 +3,7 @@ include_once "views/GestionEnsView.php";
 include_once "views/AjouterClasseView.php";
 include_once "views/AjouterHeureView.php";
 include_once "models/GestionEnsModel.php";
+
 class GestionEnsController{
    public $GestionEnsView;
    public $AjouterClasseView;
@@ -70,6 +71,5 @@ public function gererEns(){
         $AjouterClasseView->navbar();
         $AjouterClasseView->afficherForm($ens);
     }
-
 }
 ?>

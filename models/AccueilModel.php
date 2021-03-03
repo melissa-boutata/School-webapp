@@ -20,7 +20,7 @@ public function getArticles()
     } catch(PDOException $exc){
         die("ERROR: Could not connect. " . $exc->getMessage());
     }
-            $sql = "SELECT * FROM article WHERE ConcernedUser='Tous' ORDER BY Date DESC";
+            $sql = "SELECT * FROM article WHERE Tous='Oui' ORDER BY Date DESC";
             
             if($stmt = $pdo->prepare($sql)){
                 $description=[
@@ -28,7 +28,7 @@ public function getArticles()
                     'titre'=>'',
                     'image'=>'',
                     'description'=>'',
-                    'data'=>''
+                    'date'=>''
                 ];
                 if($stmt->execute()){
                     $data= array(); 
