@@ -41,7 +41,7 @@ Class ProfilEnfantView {
                                         <?php echo "$data[2] $data[3]" ?>
                                     </h5>
                                     <h6>
-                                        Étudiant à Classe x Groupe y
+                                        Étudiant à la classe <?php  echo $data[12]?>
                                     </h6>
                                     <p class="proile-rating">CLASSEMENT : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -65,15 +65,17 @@ Class ProfilEnfantView {
                             <?php for ($j=0;$j<3;$j++){ ?>
 
                                 <p><?php $n=$j+1;
-                                if($activites[$j]!=NULL){
-                                    echo " Activité $n: " .  $activites[$j];
-                                }else {
-                                    echo "//";
-                                }
-                                ?>
-                                </p>
-                          
-                            <?php }?>
+                                if(array_key_exists($j,$activites)){
+                                    if ($activites[$j]!=NULL){
+                                        echo " Activité $n: " .  $activites[$j];
+                                    }else {
+                                        echo "//";
+                                    }
+                                    ?>
+                                    </p>
+                                <?php }
+                               
+                           }?>
                         </div>
                     </div>
                     <div class="col-md-8">

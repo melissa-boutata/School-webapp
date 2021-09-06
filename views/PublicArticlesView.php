@@ -20,8 +20,8 @@ class PublicArticlesView{
         }
   public function menu(){
     ?>
-        <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+           <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div class="container">
     
     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -32,28 +32,27 @@ class PublicArticlesView{
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Présentation</a>
+          <a class="nav-link" href="/ProjetWeb/Presentation">Présentation</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cycle Primaire</a>
+          <a class="nav-link" href="/ProjetWeb/Primaire">Cycle Primaire</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cycle Moyen</a>
+          <a class="nav-link" href="/ProjetWeb/Moyen">Cycle Moyen</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cycle Secondaire</a>
+          <a class="nav-link" href="/ProjetWeb/Secondaire">Cycle Secondaire</a>
         </li> 
         <li class="nav-item">
-          <a class="nav-link" href="#">Espace élèves</a>
+          <a class="nav-link" href="/ProjetWeb/EspaceEtudiant">Espace élèves</a>
         </li> 
         <li class="nav-item">
-          <a class="nav-link" href="#">Espace parents</a>
+          <a class="nav-link" href="/ProjetWeb/EspaceParent">Espace parents</a>
         </li> 
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="/ProjetWeb/Contact">Contact</a>
         </li> 
       </ul>
-      <br>
     </div>
     </div>
     </nav>
@@ -65,9 +64,7 @@ class PublicArticlesView{
     <!-- Page Content -->
  
     <br>
-    <br>
-    <br>
-    
+   
     <div class="container section">
             <div class="row">
                 <div class="col-md-8">
@@ -94,8 +91,43 @@ class PublicArticlesView{
   public function piedsdepage(){
     ?>
       <!-- Footer -->
-      <footer class="py-5 bg-dark  ">
+      <footer class="py-5 bg-dark ">
         <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container">
+    
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Accueil
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Presentation">Présentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Primaire">Cycle Primaire</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Moyen">Cycle Moyen</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Secondaire">Cycle Secondaire</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/EspaceEtudiant">Espace élèves</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/EspaceParent">Espace parents</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Contact">Contact</a>
+        </li> 
+      </ul>
+    </div>
+    </div>
+    </nav>
           <p class="m-0 text-center text-white">Copyright &copy; 2021</p>
         </div>
         <!-- /.container -->

@@ -20,10 +20,49 @@ class EnsMoyenView{
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
             <link href="public/css/listeens.css" rel="stylesheet">
 </head>
-      
 <?php
 }
-    
+public function menu(){
+          ?>
+              <!-- Navigation -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+          <div class="container">
+          
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/ProjetWeb/">Accueil
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/ProjetWeb/Presentation">Présentation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/ProjetWeb/Primaire">Cycle Primaire</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/ProjetWeb/Moyen">Cycle Moyen</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/ProjetWeb/Secondaire">Cycle Secondaire
+                <span class="sr-only">(current)</span>
+              </a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="/ProjetWeb/EspaceEtudiant">Espace élèves</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="/ProjetWeb/EspaceParent">Espace parents</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="/ProjetWeb/Contact">Contact</a>
+              </li> 
+            </ul>
+          </div>
+          </div>
+          </nav>  
+<?php
+}
     public function afficherEns($enseignants){
 
 ?>
@@ -37,7 +76,7 @@ class EnsMoyenView{
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Liste des<b> enseignants</b> du cycle primaire</h2>
+						<h2>Liste des<b> enseignants</b> du cycle moyen</h2>
 					</div>
 
 				</div>
@@ -87,8 +126,50 @@ class EnsMoyenView{
 			</table>
 			
 	</div>        
-</div>
-
+</div> <?php }
+public function piedsdepage(){
+    ?>
+      <footer class="py-5 bg-dark fixed-bottom ">
+        <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container">
+    
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="#">Accueil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Presentation">Présentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Primaire">Cycle Primaire</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/ProjetWeb/Moyen">Cycle Moyen</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Secondaire">Cycle Secondaire
+        </a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/EspaceEtudiant">Espace élèves</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/EspaceParent">Espace parents</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Contact">Contact</a>
+        </li> 
+      </ul>
+    </div>
+    </div>
+    </nav>
+          <p class="m-0 text-center text-white">Copyright &copy; 2021</p>
+        </div>
+        <!-- /.container -->
+      </footer>
 </body>
 </html>
 <?php

@@ -7,19 +7,15 @@ class AccueilModel {
 
 public function getArticles()
 {   
-    define('DB_SERVER', 'localhost');
-    define('DB_USERNAME', 'root');
-    define('DB_PASSWORD', '');
-    define('DB_NAME', 'projet_web');
-     
-    
+  
     try{
-        $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
         // Set the PDO error mode to exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $exc){
         die("ERROR: Could not connect. " . $exc->getMessage());
     }
+      
             $sql = "SELECT * FROM article WHERE Tous='Oui' ORDER BY Date DESC";
             
             if($stmt = $pdo->prepare($sql)){
@@ -47,6 +43,32 @@ public function getArticles()
             unset($stmt);
             unset($pdo); 
 }
+
+
+public function getImages(){
+    require_once "config/config.php";
+            $sql = "SELECT * FROM diaporama";
+           
+            if($stmt = $pdo->prepare($sql)){
+                $image=[
+                    'id_image'=>'',
+                    'lien_image'=>'',
+                ];
+                if($stmt->execute()){
+                    $data= array(); 
+                    for($i=0; $row = $stmt->fetch(); $i++){
+                        $image["id_image"]=$row["ID_image"];
+                        $image["lien_image"]=$row["lien"];
+                        array_push($data,$image);
+                    }
+                    return $data;
+                   
+                }
+            }    
+            unset($stmt);
+            unset($pdo); 
+
+}  
 
 }
 ?>

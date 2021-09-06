@@ -15,7 +15,10 @@ public function afficherDescription(){
     
     $PresentationView=new PresentationView();
     $PresentationView->entete();
+    $PresentationView->menu();
     $PresentationView->description($data);
+    $PresentationView->piedsdepage();
+
 }
 }
 ?>

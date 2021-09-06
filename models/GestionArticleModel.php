@@ -7,11 +7,11 @@ class GestionArticleModel{
 public function getAllArticles()
 {   
          require_once "config/config.php";
-            $sql = "SELECT * FROM article";
+            $sql = "SELECT * FROM article ORDER BY Date DESC";
            
             if($stmt = $pdo->prepare($sql)){
                 $article=[
-                    'id'=>'',
+                    'id'=>'', 
                     'titre'=>'',
                     'image'=>'',
                     'date'=>'',

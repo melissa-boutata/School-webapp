@@ -12,59 +12,91 @@ class GestionArticleController{
        $this->GestionArticleModel = new GestionArticleModel();
    }
 public function gererArticles(){
-
-    session_start();
-    $valid_session = isset($_SESSION['id']) ? $_SESSION['id'] === session_id() : FALSE;
-    if ($valid_session &&  $_SESSION["type"] != "admin")
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+    if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin'))
     {
-            header("Location: /ProjetWeb/Admin");
-    }else {
-         $this->GestionArticleModel = new GestionArticleModel();
+        $this->GestionArticleModel = new GestionArticleModel();
          $articles=$this->GestionArticleModel->getAllArticles();
        
          $GestionArticleView=new GestionArticleView();
          $GestionArticleView->entete();
          $GestionArticleView->navbar();
          $GestionArticleView->gestionArticle($articles);
+    }else {
+         header("Location: /ProjetWeb/AdminLogin"); 
     }
 }
 public function ajouterArticle(){
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+    if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin'))
+    {
          $AjouterArticleView=new AjouterArticleView();
          $AjouterArticleView->entete();
          $AjouterArticleView->navbar();
          $AjouterArticleView->afficherForm();
+    }else {
+        header("Location: /ProjetWeb/AdminLogins"); 
+    }
 
     }
     public function ajouterToBDD(){
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
+        if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
+            $reslt = $this->GestionArticleModel->addArticle();  
 
-        $reslt = $this->GestionArticleModel->addArticle();  
-
-        header("Location: /ProjetWeb/GestionArticle");
+            header("Location: /ProjetWeb/GestionArticle");}
+        else {
+             header("Location: /ProjetWeb/AdminLogin"); 
+        }
 
     }
     public function supprimerArticle($id){
-
-        $supp = $this->GestionArticleModel->supprimerArticle($id);  
-        header("Location: /ProjetWeb/GestionArticle");
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
+        if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
+            $supp = $this->GestionArticleModel->supprimerArticle($id);  
+            header("Location: /ProjetWeb/GestionArticle"); }
+        else {
+            header("Location: /ProjetWeb/AdminLogin"); 
+       }
        
     }
 
     public function modifierArticle($id){
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
+        if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
+            $article = $this->GestionArticleModel->getArticle($id);
 
-         $article = $this->GestionArticleModel->getArticle($id);
-
-         $ModifierArticleView=new ModifierArticleView();
-         $ModifierArticleView->entete();
-         $ModifierArticleView->navbar();
-         $ModifierArticleView->afficherForm($article);
+            $ModifierArticleView=new ModifierArticleView();
+            $ModifierArticleView->entete();
+            $ModifierArticleView->navbar();
+            $ModifierArticleView->afficherForm($article);}
+            else{
+                header("Location: /ProjetWeb/AdminLogin"); 
+            }
 
     }
 
     public function modifierInBDD(){
-
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
+        if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
         $reslt = $this->GestionArticleModel->modifierInBDD(); 
 
-        header("Location: /ProjetWeb/GestionArticle");
+        header("Location: /ProjetWeb/GestionArticle"); }
+        else {
+            header("Location: /ProjetWeb/AdminLogin"); 
+        }
 
     }
 

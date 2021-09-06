@@ -9,8 +9,7 @@ public function getInfos($id)
 { 
        
     require_once "config/config.php";
-    
-    session_start();
+
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
       
         // Récuperer les infos de la BDD 
@@ -40,7 +39,19 @@ public function getInfos($id)
                             $data[9]=$row["BirthPlace"];
                             $data[10]=$row["Address"];
                             $data[11]=$row["Class"];
-                            
+                            //Récuperer le nom de la classe
+                            $classe_query = "SELECT Class FROM classe WHERE ID_classe=:classe";
+                            if($stmt_classe = $pdo->prepare($classe_query)){
+
+                                $stmt_classe->bindParam(":classe", $param_classe, PDO::PARAM_STR);
+                        
+                                $param_classe = $data[11];
+
+                                if($stmt_classe->execute()){
+                                $row = $stmt_classe->fetch();
+                                        $data[12]=$row["Class"];
+                                    }
+                                } 
                             return $data;
                   }
                 }

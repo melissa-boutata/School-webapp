@@ -19,6 +19,7 @@
         include_once "controllers/GestionPresentationController.php";
         include_once "controllers/GestionRestaurationController.php";
         include_once "controllers/GestionEnsController.php";
+        include_once "controllers/GestionDiaporamaController.php";
         include_once "controllers/AjouterEdtController.php";
         include_once "controllers/GestionUtilisateursController.php";
         include_once "controllers/ProfilParentController.php";
@@ -71,24 +72,24 @@
                             
                         }
                     }
-         elseif ($requestedController=="Logout"){
+        elseif ($requestedController=="Logout"){
                 session_start();
                 session_destroy();
                 header("Location:/ProjetWeb/");        
             }
-        elseif ($requestedController=="Admin")
-        {
-                    $controller = new LoginAdminController();
-                    $controller->afficher(); }
-
        elseif ($requestedController=="AdminLogin")
-                    {
+                     {
                      $controller = new LoginAdminController();
-                     $controller->login(); }
-        elseif ($requestedController=="AdminLogout"){
-                    $controller = new  AdminPanelController();
-                    $controller->logout(); 
-        }
+                        if($_SERVER["REQUEST_METHOD"] == "POST")
+                            {
+                                $controller->login(); 
+             
+                            }else{
+                                     
+                                $controller->afficher();
+                                         
+                            }
+                    }
        elseif ($requestedController=="AdminPanel")
                      {
                       $controller = new AdminPanelController();
@@ -212,6 +213,16 @@
                           $controller->ajouterEdt();
                       }
                     }
+           elseif ($requestedController=="CreerClasse")
+                    {
+                     $controller = new AjouterEdtController();
+                     if($_SERVER["REQUEST_METHOD"] == "POST"){
+                       $controller->CreerClasseInBDD();
+                   } 
+                     else {
+                         $controller->CreerClasse();
+                     }
+                   }
             elseif ($requestedController=="GestionUtilisateurs")
                     {
                     $controller = new GestionUtilisateursController();
@@ -272,8 +283,14 @@
                     // $requestedAction is the method
                     // $requestedParams is the param
                     $controller = new PublicArticlesController();
-                    $controller->afficherArticle($requestedParams[0]);
+                    $controller->afficherArticle($requestedAction);
                   
+                }
+               
+        elseif($requestedController == "PaginationArticles") 
+                {
+                    $controller = new AccueilController();
+                    $controller->paginationArticles(); 
                 }
         elseif($requestedController== "Primaire") 
                 {
@@ -284,6 +301,11 @@
                 {
                     $controller = new PrimaireController();
                     $controller->ensPrimaire();
+                }
+        elseif($requestedController== "EdtPrimaire") 
+                {
+                    $controller = new PrimaireController();
+                    $controller->edtPrimaire();
                 }
         elseif($requestedController== "Moyen") 
                 {
@@ -307,8 +329,13 @@
                 }
         elseif($requestedController== "ListeEnsSecondaire") 
                 {
-                    $controller = new SeconaireController();
+                    $controller = new SecondaireController();
                     $controller->ensSecondaire();
+                }
+        elseif($requestedController== "EdtSecondaire") 
+                {
+                    $controller = new SecondaireController();
+                    $controller->edtSecondaire();
                 }
          elseif($requestedController== "Restauration") 
                 {
@@ -320,6 +347,33 @@
                     $controller = new ContactController();
                     $controller->afficherContact();
                 }
+        elseif($requestedController== "GestionContact") 
+                {
+                    $controller = new ContactController();
+                    $controller->gererContact();
+                }
+        elseif ($requestedController=="ModifierContact")
+                {
+                    $controller = new ContactController();
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
+                        $controller->modifierInBDD();
+                    }else { 
+                    $controller->modifierContact();
+                }
+            }
+        elseif($requestedController=="GestionDiaporama"){
+                    $controller = new GestionDiaporamaController();
+                    $controller->gererDiaporama();
+                }
+        elseif ($requestedController=="ModifierDiaporama")
+                {
+                    $controller = new GestionDiaporamaController();
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
+                        $controller->modifierInBDD();
+                    }else { 
+                    $controller->modifierDiaporama();
+                }
+            }
         elseif($requestedController== "ListeEns") 
                 {
                     $controller = new ListeEnsController();

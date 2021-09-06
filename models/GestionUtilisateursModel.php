@@ -58,7 +58,7 @@ public function getUtilisateur($id,$type)
 {   
     
     try{
-        $pdo = new PDO("mysql:host=localhost;dbname=projet_web", "root", "");
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
         // Set the PDO error mode to exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $exc){
@@ -138,7 +138,7 @@ public function listeClasses(){
  
 
     try{
-        $pdo = new PDO("mysql:host=localhost;dbname=projet_web", "root", "");
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
         // Set the PDO error mode to exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $exc){
@@ -270,9 +270,27 @@ public function addUtilisateur(){
                     $statement->bindValue(":id_classe", $id_classe);
                     $statement->bindValue(":id_parent", $id_parent);
 
+                
                 }
                 $inserted_user = $statement->execute();
-            
+        
+                $LAST_ID=$pdo->lastInsertId();
+
+                if($_POST["activite1"]!=NULL){
+                    $query_activite ="INSERT INTO `activite` (`ID_etud`, `Activite1`,`Activite2`,`Activite3`) VALUES (:id_etud,:activite1,:activite2,:activite3)";
+                    $res = $pdo->prepare($query_activite);
+                    $activite1= $_POST["activite1"];
+                    $activite2= $_POST["activite2"];
+                    $activite3= $_POST["activite3"];
+
+                    $res->bindValue(":activite1", $activite1);
+                    $res->bindValue(":activite2", $activite2);
+                    $res->bindValue(":activite3", $activite3);
+                    $res->bindValue(":id_etud", $LAST_ID);
+                    
+                    $res->execute();
+                
+                }
                 if ($inserted_user){
              echo "<script type= 'text/javascript'>alert('Nouveel utilisaeur inséré');</script>";
              

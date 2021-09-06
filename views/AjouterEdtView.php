@@ -20,7 +20,7 @@ class AjouterEdtView{
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-            <link href="public/css/gestionpresentation.css" rel="stylesheet">
+            <link href="public/css/ajouteredt.css" rel="stylesheet">
 
 
 </head>
@@ -35,7 +35,7 @@ class AjouterEdtView{
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <a class="navbar-link" href="/ProjetWeb/AdminLogout">Log out</a>
+            <a class="navbar-link" href="/ProjetWeb/Logout">Log out</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -47,7 +47,7 @@ class AjouterEdtView{
     }
 
 
-public function afficherForm($listeEns,$listeClasse){ ?>
+public function afficherForm($listeEns,$listeClasse,$listeMatiere){ ?>
 
 <br> 
 <br>
@@ -88,18 +88,22 @@ public function afficherForm($listeEns,$listeClasse){ ?>
                         <th>Heure de début</th>
                         <th>Heure de fin</th>
                         <th>Salle </th>
-                        <th>Actions</th>
                         
 					</tr>
 				</thead>
 				<tbody>
-    <?php for ($i=1;$i<=5;$i++) 
+    <?php for ($i=1;$i<=7;$i++) 
     {
     ?>
       <tr>
         <td>Séance <?php echo $i; ?></td>
-        <td>
-          <input type="text" id="matiere<?php echo $i; ?>" name="matiere<?php echo $i; ?>" style="width: 45px; padding: 1px"> 
+        <td>   
+        <select id="matiere<?php echo $i; ?>" name="matiere<?php echo $i; ?>">
+                    <?php
+                    foreach($listeMatiere as $mat){ ?> 
+                        <option value="<?php echo $mat["nom_matiere"] ?>"><?php echo $mat["nom_matiere"] ?></option>
+                    <?php } ?> 
+                </select> 
         </td>
         <td>
                <select id="ens<?php echo $i; ?>" name="ens<?php echo $i; ?>">
@@ -110,11 +114,28 @@ public function afficherForm($listeEns,$listeClasse){ ?>
                 </select>  
         </td>
         <td>
-         <input type="time" id="heureD<?php echo $i; ?>" name="heureD<?php echo $i; ?>" style="width: 45px; padding: 1px"> 
+        
+        <select id="heureD<?php echo $i; ?>" name="heureD<?php echo $i; ?>"> 
+                            <option value="08:00">08:00</option>
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+          </select>
         </td>
 
         <td>
-       <input type="time" id="heureF<?php echo $i; ?>" name="heureF<?php echo $i; ?>" style="width: 45px; padding: 1px"> 
+        <select id="heureF<?php echo $i; ?>" name="heureF<?php echo $i; ?>"> 
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+          </select>
         </td>
         <td>
           <input type="text" id="salle<?php echo $i; ?>" name="salle<?php echo $i; ?>" style="width: 45px; padding: 1px"> 

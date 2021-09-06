@@ -2,7 +2,7 @@
 include_once "views/MoyenView.php";
 include_once "models/MoyenModel.php";
 include_once "views/EnsMoyenView.php";
-include_once "views/EdtMoyenView.php";
+include_once "views/EdtView.php";
 class MoyenController{
 public $MoyenView;
 public $MoyenModel;
@@ -27,11 +27,13 @@ public function ensMoyen(){
 
      $EnsMoyenView=new EnsMoyenView();
      $EnsMoyenView->entete();
+     $EnsMoyenView->menu();
      $EnsMoyenView->afficherEns($ens);
+     $EnsMoyenView->piedsdepage();
   
 }
 
-public function edtMoyen(){  //Verifier si l'edt a été crée
+public function edtMoyen(){  
     $MoyenModel= new MoyenModel();
     $classes=$MoyenModel->getClasses("Moyen");
     $allEdt= array(); 
@@ -52,10 +54,11 @@ public function edtMoyen(){  //Verifier si l'edt a été crée
       
     }
 
-    $EdtMoyenView=new EdtMoyenView();
-    $EdtMoyenView->entete();
-    $EdtMoyenView->afficher($allEdt,$classes);
-  
+    $EdtView=new EdtView();
+    $EdtView->entete();
+    $EdtView->menu();
+    $EdtView->afficher($allEdt,$classes);
+    $EdtView->piedsdepage();
 }
 
 }

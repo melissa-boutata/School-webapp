@@ -3,15 +3,15 @@
 class LoginAdminModel{
 public function getlogin()
 {
-
+  
     require_once "config/config.php";
-    
+ 
     $username = $password = "";
     $username_err = $password_err = "";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+
         // Check if username is empty
-        if(!empty(trim($_POST[""]))){
+        if(empty(trim($_POST["username"]))){
             $username_err = "Please enter username.";
         } else{
             $username = trim($_POST["username"]);
@@ -21,24 +21,24 @@ public function getlogin()
         } else{
             $password = trim($_POST["password"]);
         }
+     
         if(empty($username_err) && empty($password_err)){
            
-        $sql = "SELECT ID_user, Username,Password FROM utilisateur WHERE Username = :username && Type:=type ";
+        $sql = "SELECT ID_user, Username,Password FROM utilisateur WHERE Username = :username && Type=:type ";
            if($stmt = $pdo->prepare($sql)){
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":type", $param_type, PDO::PARAM_STR);
             
             $param_type="Admin";
-            $param_username = trim($_POST["username"]);
+            $param_username = $username;
             
-          
             if($stmt->execute()){
-    
+  
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
                         $id = $row["ID_user"];
                         $username = $row["Username"];
-                        $hashed_password = $row["Password"];
+                        $hashed_password = $row["Password"];                
                         if($password == $hashed_password){
                           
                             session_start();
@@ -47,7 +47,8 @@ public function getlogin()
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
                             $_SESSION["type"] = "Admin";                
-                              return "Admin";
+                                return  $_SESSION["type"] ;
+                            
                           
                         } else{
                             

@@ -26,7 +26,7 @@ class AjouterArticleView{
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <a class="navbar-link" href="/ProjetWeb/AdminLogout">Log out</a>
+            <a class="navbar-link" href="/ProjetWeb/Logout">Log out</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -68,7 +68,7 @@ class AjouterArticleView{
 		<label for="users">Destiné à:</label>
 	  <div class="row"> 
         <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="Tous" id="Tous" value="Tous" >
+      <input class="form-check-input" type="radio" name="Tous" id="Tous" value="Tous"  >
       <label class="form-check-label" for="exampleRadios1">
       Tous
       </label>
@@ -116,6 +116,5 @@ class AjouterArticleView{
 </html>
     <?php
     }
-
 }
 ?>

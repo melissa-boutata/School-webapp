@@ -6,6 +6,9 @@ body {
   margin: 0 auto;
   margin-top: 10%;
 }
+.card {
+  border: 10px solid black;
+}
 
 form {
   width: 100%;
@@ -33,7 +36,7 @@ input[type="number"] {
 
 input[type="submit"] {
   width: 100%;
-  background-color: #009879;
+  background-color: #007bff;
   border-radius: 15px;
   border: 2px solid;
   color: white;
@@ -45,8 +48,8 @@ input[type="submit"] {
 }
 input[type="submit"]:hover {
   background-color: white;
-  color: #009879;
-  border: 1px solid #009879;
+  color: #007bff;
+  border: 1px solid #007bff;
 }
 
 /* Objectif N°5: Style du diaporama */

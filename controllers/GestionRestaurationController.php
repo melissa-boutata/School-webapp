@@ -13,27 +13,35 @@ class GestionRestaurationController{
    }
 public function gererRestauration(){
 
-    session_start();
-    $valid_session = isset($_SESSION['id']) ? $_SESSION['id'] === session_id() : FALSE;
-    if ($valid_session &&  $_SESSION["type"] != "admin")
-    {
-            header("Location: /ProjetWeb/Admin");
-    }else {
-      
-         $menu=$this->GestionRestaurationModel->getAllRepas();
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
 
-         $GestionRestaurationView=new GestionRestaurationView();
-         $GestionRestaurationView->entete();
-         $GestionRestaurationView->navbar();
-         $GestionRestaurationView->afficherMenu($menu);
+if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin'))
+    {
+        $menu=$this->GestionRestaurationModel->getAllRepas();
+
+        $GestionRestaurationView=new GestionRestaurationView();
+        $GestionRestaurationView->entete();
+        $GestionRestaurationView->navbar();
+        $GestionRestaurationView->afficherMenu($menu);
+    }else {
+        header("Location: /ProjetWeb/LoginAdmin");
     }
 }
 public function ajouterRepas(){
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
 
-         $AjouterRepasView=new AjouterRepasView();
-         $AjouterRepasView->entete();
-         $AjouterRepasView->navbar();
-         $AjouterRepasView->afficherForm();
+    if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
+            $AjouterRepasView=new AjouterRepasView();
+            $AjouterRepasView->entete();
+            $AjouterRepasView->navbar();
+            $AjouterRepasView->afficherForm(); 
+    } else {
+        header("Location: /ProjetWeb/LoginAdmin");
+    }
 
     }
     public function ajouterToBDD(){
@@ -43,21 +51,35 @@ public function ajouterRepas(){
 
     }
     public function supprimerRepas($id){
-
-        $supp = $this->GestionRestaurationModel->supprimerRepas($id); 
-  
-        header("Location: /ProjetWeb/GestionRestauration");
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
+    
+        if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
+            $supp = $this->GestionRestaurationModel->supprimerRepas($id); 
+    
+            header("Location: /ProjetWeb/GestionRestauration");} 
+        else {
+             header("Location: /ProjetWeb/LoginAdmin");
+        }
        
     }
 
     public function modifierRepas($id){
-
-         $menu = $this->GestionRestaurationModel->getRepas($id);
-     
-         $ModifierRestaurationView=new ModifierRepasView();
-         $ModifierRestaurationView->entete();
-         $ModifierRestaurationView->navbar();
-         $ModifierRestaurationView->afficherForm($menu);
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
+    
+        if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
+                $menu = $this->GestionRestaurationModel->getRepas($id);
+            
+                $ModifierRestaurationView=new ModifierRepasView();
+                $ModifierRestaurationView->entete();
+                $ModifierRestaurationView->navbar();
+                $ModifierRestaurationView->afficherForm($menu); }
+        else {
+            header("Location: /ProjetWeb/LoginAdmin");
+        }
     }
 
     public function modifierInBDD(){

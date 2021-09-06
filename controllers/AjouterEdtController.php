@@ -1,10 +1,9 @@
 <?php 
 include_once "views/AjouterEdtView.php";
 include_once "models/AjouterEdtModel.php";
+include_once "views/CreerClasseView.php";
+
 class AjouterEdtController{
-   /*public $GestionRestaurationView;
-   public $AjouterRestaurationView;
-   public $GestionRestaurationModel;*/
 
    public function __construct()
    {
@@ -28,21 +27,49 @@ public function gererRestauration(){
     }
 }*/ 
 public function ajouterEdt(){
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+        }
 
+    if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
         $listeEns= $this->AjouterEdtModel->listeEns(); 
         $listeClasse=$this->AjouterEdtModel->listeClasse();
+        $listeMatiere=$this->AjouterEdtModel->listeMatiere();
 
          $AjouterEdtView=new AjouterEdtView();
          $AjouterEdtView->entete();
          $AjouterEdtView->navbar();
-         $AjouterEdtView->afficherForm($listeEns,$listeClasse);
+         $AjouterEdtView->afficherForm($listeEns,$listeClasse,$listeMatiere);} 
+         else {
+            header("Location: /ProjetWeb/AdminLogin");
+         }
     }
     public function ajouterEdtInBDD(){
 
         $reslt = $this->AjouterEdtModel->addEdt();  
         
-        header("Location: /ProjetWeb/AjouterEdtModel");
+        header("Location: /ProjetWeb/AjouterEdt");
 
+    }
+    public function creerClasse(){
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+            }
+    
+        if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
+            
+             $CreerClasseView= new CreerClasseView();
+             $CreerClasseView->entete();
+             $CreerClasseView->navbar();
+             $CreerClasseView->afficherForm();} 
+             else {
+                header("Location: /ProjetWeb/AdminLogin");
+             }
+    }
+    public function creerClasseInBDD(){
+        $reslt = $this->AjouterEdtModel->addClasse();  
+        
+        header("Location: /ProjetWeb/AjouterEdt");
     }
     /*
     public function supprimerRepas($id){

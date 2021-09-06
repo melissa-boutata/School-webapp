@@ -5,27 +5,6 @@ class AjouterEdtModel{
  public function __construct()
  {}
 
- /*public function addSeance($id_ens,$id_mat,$id_classe,$jour,$heured,$heuref,$salle){
-
-    require_once "config/config.php";
-    
-    $sql = "INSERT INTO `seance` ( `ID_ens`, `ID_matiere`, `ID_classe`, `Jour`, `HeureD`, `HeureF`, `Salle`) VALUES (id_ens:,:id_mat,:id_classe,:jour,:heured,:heuref,:salle)";
-    
-    $statement = $pdo->prepare($sql);
-
-    $statement->bindValue(":id_ens", $id_ens);
-    $statement->bindValue(":id_mat", $id_mat);
-    $statement->bindValue(":id_classe", $id_classe);
-    $statement->bindValue(":jour", $jour);
-    $statement->bindValue(":heured", $heured);
-    $statement->bindValue(":heuref", $heuref);
-    $statement->bindValue(":salle", $salle);
-    
-
-    $inserted = $statement->execute();
-    return $inserted;
-}*/
-
 public function listeEns(){
 
     require_once "config/config.php";
@@ -54,7 +33,7 @@ public function listeClasse(){
  
 
 try{
-    $pdo = new PDO("mysql:host=localhost;dbname=projet_web", "root", "");
+    $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
     // Set the PDO error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $exc){
@@ -82,6 +61,37 @@ try{
     }
 
 }
+public function listeMatiere(){
+ 
+    try{
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
+        // Set the PDO error mode to exception
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $exc){
+        die("ERROR: Could not connect. " . $exc->getMessage());
+    }
+    
+        $sql = "SELECT * FROM matiere";
+       
+        if($stmt = $pdo->prepare($sql)){
+            $mat=[
+                'id'=>'',
+                'nom_matiere'=>'',
+            ];
+            if($stmt->execute()){
+                $matieres= array(); 
+                for($i=0; $row = $stmt->fetch(); $i++){
+                    $mat["id"]=$row["ID_matiere"];
+                    $mat["nom_matiere"]=$row["LibMatiere"];
+                    array_push($matieres,$mat);
+                }
+                  return $matieres;
+    
+            }
+        }
+    
+    }
+    
 
 public function addEdt(){
     
@@ -89,7 +99,7 @@ public function addEdt(){
 
         require_once "config/config.php";
 
-        for($i=1;$i<=3;$i++){
+        for($i=1;$i<=7;$i++){
            $nom_ens= $_POST["ens". $i];
 
            //Récuper l'id qui correspond à l'ens
@@ -164,6 +174,46 @@ public function addEdt(){
             return $inserted;
         }  
 
+}
+
+public function addClasse(){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        require_once "config/config.php";
+
+            $cycle=$_POST["cycle"];
+            $niveau= $_POST["niveau"];
+            $groupe= $_POST["classe"];
+            $annee= $_POST["annee"];
+
+            if($cycle=="Primaire"){
+                $classe=$niveau . "AP" . $groupe; 
+            }
+            elseif($cycle=="Moyen"){
+                $classe=$niveau . "AM" . $groupe; 
+            }
+            else{
+                $classe=$niveau . "AS" . $groupe; 
+            }
+               
+            $sql = "INSERT INTO `classe` (`Cycle`,`Class`,`SchoolYear`) VALUES (:cycle, :classe,:annee)";
+            
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(":cycle", $cycle);
+            $statement->bindValue(":classe", $classe);
+            $statement->bindValue(":annee", $annee);
+
+            $inserted = $statement->execute();
+             
+            if($inserted){
+             echo "<script type= 'text/javascript'>alert('Nouveau paragraphe inséré');</script>";
+             
+            }
+            else{
+            echo "<script type= 'text/javascript'>alert('Le paragraphe  n'a pas été inséré);</script>";
+            }
+            return $inserted;
+          }
 }
 
 

@@ -26,7 +26,7 @@ class AjouterPresentationView{
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <a class="navbar-link" href="/ProjetWeb/AdminLogout">Log out</a>
+            <a class="navbar-link" href="/ProjetWeb/Logout">Log out</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

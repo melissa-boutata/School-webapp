@@ -25,7 +25,7 @@ class AjouterUtilisateurView{
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <a class="navbar-link" href="/ProjetWeb/AdminLogout">Log out</a>
+            <a class="navbar-link" href="/ProjetWeb/Logout">Log out</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -91,7 +91,7 @@ class AjouterUtilisateurView{
             </div>  
             <div class="col-lg-4 col-md-4 mb-4" > 
                 <label for="">Numéro de télephone 3</label>
-                <input type="number" id="phone" name="phone3" placeholder=" [Optionnel]" required >
+                <input type="number" id="phone" name="phone3" placeholder=" [Optionnel]" >
             </div>  
             </div>
             <label for="">Adresse</label>
@@ -127,10 +127,24 @@ class AjouterUtilisateurView{
                         <option value="<?php echo $parent["id"]?>"> <?php echo $parent["nom"]." "; echo $parent["prenom"];  ?></option>
                     <?php } ?> 
                 </select> 
-                
+                <div class="row"> 
+        
+            <div class="col-lg-4 col-md-4 mb-4">
+                <label for="">Activité Extra-scolaire1</label>
+                <input type="text" id="activite1" name="activite1" placeholder="Activié extrascolaire [Optionel]">
+    
+            </div>
+            <div class="col-lg-4 col-md-4 mb-4" > 
+            <label for="">Activité Extra-scolaire2</label>
+                <input type="text" id="activite2" name="activite2" placeholder="Activié extrascolaire [Optionel]">
+            </div>  
+            <div class="col-lg-4 col-md-4 mb-4" > 
+            <label for="">Activité Extra-scolaire3</label>
+                <input type="text" id="activite3" name="activite3" placeholder="Activié extrascolaire [Optionel]">
+            </div>  
+            </div> 
                 <?php } ?>
             
-        
         <input type="submit" value="Ajouter utilisateur">
 		</form>
 	</div>

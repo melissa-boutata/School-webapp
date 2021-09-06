@@ -7,15 +7,14 @@ class ProfilEtudModel {
 
 public function getInfos()
 { 
-        try{
-            $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
-            // Set the PDO error mode to exception
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $exc){
-            die("ERROR: Could not connect. " . $exc->getMessage());
-        }
-    
-    session_start();
+    try{
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
+        // Set the PDO error mode to exception
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $exc){
+        die("ERROR: Could not connect. " . $exc->getMessage());
+    }
+
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         
         // Récuperer les infos de la BDD 
@@ -44,6 +43,20 @@ public function getInfos()
                             $data[9]=$row["BirthPlace"];
                             $data[10]=$row["Address"];
                             $data[11]=$row["Class"];
+            
+                            //Récuperer le nom de la classe
+                            $classe_query = "SELECT Class FROM classe WHERE ID_classe=:classe";
+                            if($stmt_classe = $pdo->prepare($classe_query)){
+
+                                $stmt_classe->bindParam(":classe", $param_classe, PDO::PARAM_STR);
+                        
+                                $param_classe = $data[11];
+
+                                if($stmt_classe->execute()){
+                                $row = $stmt_classe->fetch();
+                                        $data[12]=$row["Class"];
+                                    }
+                                } 
 
                             return $data;
                   }
@@ -60,14 +73,14 @@ public function getEdtByDay($id_classe,$jour){
 
 
     try{
-        $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
         // Set the PDO error mode to exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $exc){
         die("ERROR: Could not connect. " . $exc->getMessage());
     }
 
-        //require_once "config/config.php";
+    require_once "config/config.php";
         $sql = "SELECT * FROM seance WHERE ID_classe=:id_classe && Jour=:jour";
         
         if($stmt = $pdo->prepare($sql)){
@@ -141,13 +154,12 @@ public function getEdtByDay($id_classe,$jour){
 public function getNotes($id_etud){
 
     try{
-        $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
         // Set the PDO error mode to exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $exc){
         die("ERROR: Could not connect. " . $exc->getMessage());
     }
-
         //require_once "config/config.php";
         $sql = "SELECT ID_matiere,Note,Remarque FROM note WHERE ID_etud=:id_etud  ";
         
@@ -194,14 +206,12 @@ public function getNotes($id_etud){
 public function getActivites($id_etud){
 
     try{
-        $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
         // Set the PDO error mode to exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $exc){
         die("ERROR: Could not connect. " . $exc->getMessage());
     }
-
-        //require_once "config/config.php";
 
         $sql = "SELECT Activite1,Activite2,Activite3 FROM activite WHERE ID_etud = :id_etud";
 

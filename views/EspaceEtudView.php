@@ -27,20 +27,49 @@ class EspaceEtudView{
   
         <?php
         }
-        public function navbar(){
+    public function navbar(){
           ?>
   <!-- Navigation -->
   <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div class="container">
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <a class="navbar-link" href="/ProjetWeb/Login">Log In</a>
+    
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <a class="navbar-link" href="/ProjetWeb/Login">Log In</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/ProjetWeb/">Accueil
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Presentation">Présentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Primaire">Cycle Primaire</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Moyen">Cycle Moyen</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Secondaire">Cycle Secondaire</a>
+        </li> 
+        <li class="nav-item active">
+          <a class="nav-link" href="/ProjetWeb/EspaceEtudiant">Espace élèves</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/EspaceParent">Espace parents</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Contact">Contact</a>
+        </li> 
+      </ul>
     </div>
-  </nav>
+    </div>
+    </nav>
 
   <?php 
 }
@@ -60,7 +89,7 @@ class EspaceEtudView{
       <div class="row text-center">
       <?php for($i=0;$i<4;$i++){ ?>
         <div class="col-lg-3 col-md-6 mb-4" >
-        <div class="card mb-4 shadow-sm">
+        <div class="card mb-4 shadow-sm border-primary" style="border-width: 3px;">
             <div class="card-body">
              <h4 class="card-title"><?php echo $cadres[$i]["titre"] ?></h4>
               <p class="card-text"><?php echo $cadres[$i]["contenu"] ?></p>
@@ -80,7 +109,7 @@ class EspaceEtudView{
       <div class="row text-center">
       <?php for($i=4;$i<8;$i++){ ?>
         <div class="col-lg-3 col-md-6 mb-4" >
-        <div class="card mb-4 shadow-sm">
+        <div class="card mb-4 shadow-sm border-primary" style="border-width: 3px;">
             <div class="card-body">
              <h4 class="card-title"><?php echo $cadres[$i]["titre"] ?></h4>
               <p class="card-text"><?php echo $cadres[$i]["contenu"] ?></p>
@@ -106,8 +135,43 @@ class EspaceEtudView{
   public function piedsdepage(){
     ?>
       <!-- Footer -->
-      <footer class="py-5 bg-dark  ">
+      <footer class="py-5 bg-dark ">
         <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container">
+    
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/">Accueil
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Presentation">Présentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Primaire">Cycle Primaire</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Moyen">Cycle Moyen</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Secondaire">Cycle Secondaire</a>
+        </li> 
+        <li class="nav-item active">
+          <a class="nav-link" href="/ProjetWeb/EspaceEtudiant">Espace élèves</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/EspaceParent">Espace parents</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/ProjetWeb/Contact">Contact</a>
+        </li> 
+      </ul>
+    </div>
+    </div>
+    </nav>
           <p class="m-0 text-center text-white">Copyright &copy; 2021</p>
         </div>
         <!-- /.container -->

@@ -11,7 +11,6 @@ public function __construct()
     }
 public function login()
 {
-
     $reslt = $this->model->getlogin();  
  
     if($reslt == "Admin")
@@ -19,22 +18,22 @@ public function login()
         header("Location: /ProjetWeb/AdminPanel");
     }
     else{
-        header("Location: /ProjetWeb/Admin");
+        header("Location: /ProjetWeb/AdminLogin");
     }
 }
 public function afficher()
 {
-    session_start();
-    $valid_session = isset($_SESSION['id']) ? $_SESSION['id'] === session_id() : FALSE;
-    
-    if ($valid_session &&  $_SESSION["type"] != "Admin"){
-            //We call a new URL //localhost/ProjetWeb/adminpannel
-            header("Location: /ProjetWeb/Admin");
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
     }
-    else {
-    $LoginView= new LoginAdminView();
-    $LoginView->entete();    
-    $LoginView->connexion();
+
+    if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin')){
+        header("Location: /ProjetWeb/AdminPanel");
+    }
+    else{
+        $this->LoginView= new LoginAdminView();
+        $this->LoginView->entete();
+        $this->LoginView->connexion();
     }
 }
 }

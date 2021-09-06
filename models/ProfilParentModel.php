@@ -8,10 +8,14 @@ class ProfilParentModel {
 public function getInfos()
 { 
 
-    require_once "config/config.php";
-    
-    session_start();
-    
+    try{
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
+        // Set the PDO error mode to exception
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $exc){
+        die("ERROR: Could not connect. " . $exc->getMessage());
+    }
+      
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
        
         // Récuperer les infos de la BDD 
@@ -59,7 +63,7 @@ public function getInfos()
 public function getEnfant($id_parent){
 
     try{
-        $pdo = new PDO("mysql:host=localhost;dbname=projet_web", "root", "");
+        $pdo = new PDO("mysql:host=localhost;dbname=tdw", "root", "");
         // Set the PDO error mode to exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $exc){

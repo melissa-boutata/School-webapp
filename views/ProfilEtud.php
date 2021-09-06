@@ -12,9 +12,9 @@ Class ProfilEtud {
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link href="../public/css/style.css" rel="stylesheet">
-        <link href="../public/css/profile.css" rel="stylesheet">
-        <link hre="../public/css/edt.css" rel="stylesheet">
+        <link href="public/css/style.css" rel="stylesheet">
+        <link href="public/css/profile.css" rel="stylesheet">
+        <link hre="public/css/edt.css" rel="stylesheet">
     </head>
 
     </head>
@@ -42,16 +42,14 @@ Class ProfilEtud {
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<body>
 <div class="container emp-profile">
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                            <img src="https://www.oseyo.co.uk/wp-content/uploads/2020/05/empty-profile-picture-png-2.png" alt=""/>
                             <div class="file btn btn-lg btn-primary">
-                                Change Photo
+                                Changer Photo
                                 <input type="file" name="file"/>
                             </div>
                         </div>
@@ -62,7 +60,7 @@ Class ProfilEtud {
                                         <?php echo "$data[2] $data[3]" ?>
                                     </h5>
                                     <h6>
-                                        Étudiant à Classe x Groupe y
+                                        Étudiant à la classe <?php echo $data [12]?>
                                     </h6>
                                     <p class="proile-rating">CLASSEMENT : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -79,7 +77,7 @@ Class ProfilEtud {
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Modifier Profil" style="background-color:#007BFF;"/>
                     </div>
                 </div>
                 <div class="row">

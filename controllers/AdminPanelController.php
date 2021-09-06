@@ -13,24 +13,25 @@ public function logout(){
 
     session_start();
     session_destroy();
-    header("Location:/ProjetWeb/Admin");
+    header("Location:/ProjetWeb/AdminLogin");
 }
 
 public function afficherPanel(){
 
-   session_start();
-   $valid_session = isset($_SESSION['id']) ? $_SESSION['id'] === session_id() : FALSE;
-    if ($valid_session &&  $_SESSION["type"] != "admin")
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+
+    if ((array_key_exists("type", $_SESSION)) && (($_SESSION['type'])=='Admin'))
     {
-           
-            header("Location: /ProjetWeb/Admin");
+        $AdminPanelView=new AdminPanelView();
+        $AdminPanelView->entete();
+        $AdminPanelView->navbar();
+        $AdminPanelView->cadres();
+        $AdminPanelView->piedsdepage();
     }
     else {
-    $AdminPanelView=new AdminPanelView();
-    $AdminPanelView->entete();
-    $AdminPanelView->navbar();
-    $AdminPanelView->cadres();
-    $AdminPanelView->piedsdepage();
+        header("Location: /ProjetWeb/AdminLogin");
     }
 }
 }
